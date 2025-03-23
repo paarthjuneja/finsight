@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - Finsight</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body class="bg-base-200 min-h-screen flex flex-col">
+
+    <!-- Navbar -->
+    <div class="navbar bg-base-100 shadow-sm">
+        <div class="navbar-start">
+            <a href="index.html" class="btn btn-ghost text-xl">← Back</a>
+        </div>
+        <div class="navbar-center">
+            <h1 class="text-xl font-semibold">👤 Profile</h1>
+        </div>
+        <div class="navbar-end"></div>
+    </div>
+
+    <!-- Profile Section -->
+    <main class="p-6 flex flex-col items-center">
+        <!-- Profile Picture -->
+        <div class="avatar">
+            <div class="w-24 rounded-full border-2 border-primary">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-full w-full" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+            </div>
+        </div>
+
+        <!-- User Info -->
+        <div class="mt-4 text-center">
+            <h2 class="text-2xl font-bold" id="user-name">John Doe</h2>
+            <p class="text-gray-500" id="user-email">johndoe@example.com</p>
+        </div>
+
+        <!-- Financial Summary -->
+        <div class="bg-base-100 p-6 rounded-xl shadow-md mt-6 w-full max-w-md">
+            <h3 class="text-lg font-semibold mb-2">📊 Financial Summary</h3>
+            <div class="flex justify-between">
+                <p class="text-gray-600">Total Expenses:</p>
+                <p class="font-bold">₹12,345</p>
+            </div>
+            <div class="flex justify-between mt-2">
+                <p class="text-gray-600">You Owe:</p>
+                <p class="text-warning font-bold">₹500</p>
+            </div>
+            <div class="flex justify-between mt-2">
+                <p class="text-gray-600">You're Owed:</p>
+                <p class="text-success font-bold">₹300</p>
+            </div>
+        </div>
+
+        <!-- Profile Actions -->
+        <div class="mt-6 flex flex-col gap-4 w-full max-w-md">
+            <button class="btn btn-outline btn-primary w-full" onclick="editProfile()">✏️ Edit Profile</button>
+            <button class="btn btn-outline btn-error w-full" onclick="logout()">🚪 Logout</button>
+        </div>
+    </main>
+
+    <script>
+        // Dark mode functionality
+        const html = document.documentElement;
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        html.setAttribute('data-theme', savedTheme);
+
+        function editProfile() {
+            window.location.href = "settings.html"; // Redirect to login page
+        }
+
+        function logout() {
+            alert("Logging out...");
+            window.location.href = "auth.html"; // Redirect to login page
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leaderboard - Finsight</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body class="bg-base-200 min-h-screen flex flex-col">
+
+    <!-- Navbar -->
+    <div class="navbar bg-base-100 shadow-sm">
+        <div class="navbar-start">
+            <a href="index.html" class="btn btn-ghost text-xl">← Back</a>
+        </div>
+        <div class="navbar-center">
+            <h1 class="text-xl font-semibold">🏆 Leaderboard</h1>
+        </div>
+        <div class="navbar-end"></div>
+    </div>
+
+    <!-- Leaderboard Content -->
+    <main class="p-6">
+        <h2 class="text-2xl font-bold mb-4">📊 Top Performers</h2>
+
+        <div class="overflow-x-auto">
+            <table class="table w-full bg-base-100 rounded-xl shadow-md">
+                <thead>
+                    <tr class="bg-primary text-white">
+                        <th class="p-3">Rank</th>
+                        <th class="p-3">User</th>
+                        <th class="p-3">Points</th>
+                    </tr>
+                </thead>
+                <tbody id="leaderboard-body" class="text-center">
+                    <!-- Leaderboard Data Will Be Inserted Here -->
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <script>
+        // Dark mode functionality
+        const html = document.documentElement;
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        html.setAttribute('data-theme', savedTheme);
+
+        // Dummy leaderboard data (Replace this with backend data later)
+        const leaderboard = [
+            { name: "Alex", points: 45600 },
+            { name: "Casey", points: 42300 },
+            { name: "Taylor", points: 39900 },
+            { name: "Jordan", points: 38100 },
+            { name: "Chris", points: 37000 },
+            { name: "Morgan", points: 35500 },
+            { name: "Jamie", points: 34000 },
+            { name: "Sam", points: 32500 },
+            { name: "Blake", points: 31200 },
+            { name: "Riley", points: 30000 }
+        ];
+
+        // Sort leaderboard in descending order
+        leaderboard.sort((a, b) => b.points - a.points);
+
+        // Insert data into table
+        const leaderboardBody = document.getElementById("leaderboard-body");
+        leaderboard.forEach((user, index) => {
+            const row = document.createElement("tr");
+            row.innerHTML = `
+                <td class="p-3 font-bold">${index + 1}</td>
+                <td class="p-3">${user.name}</td>
+                <td class="p-3 text-primary font-bold">${user.points} pts</td>
+            `;
+            leaderboardBody.appendChild(row);
+        });
+    </script>
+
+</body>
+</html>

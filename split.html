@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Split Expense - Finsight</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body class="bg-base-200 min-h-screen flex flex-col">
+
+    <!-- Navbar -->
+    <div class="navbar bg-base-100 shadow-sm">
+        <div class="navbar-start">
+            <a href="index.html" class="btn btn-ghost text-xl">← Back</a>
+        </div>
+        <div class="navbar-center">
+            <h1 class="text-xl font-semibold">💰 Split Expense</h1>
+        </div>
+        <div class="navbar-end"></div>
+    </div>
+
+    <!-- Expense Splitter Section -->
+    <main class="p-6">
+        <h2 class="text-2xl font-bold mb-4">🔢 Enter Expense Details</h2>
+
+        <div class="bg-base-100 p-6 rounded-xl shadow-md">
+            <label class="block text-lg font-medium mb-2">Total Amount (₹)</label>
+            <input type="number" id="total-amount" class="input input-bordered w-full mb-4" placeholder="Enter total expense">
+
+            <label class="block text-lg font-medium mb-2">People Sharing</label>
+            <textarea id="people-names" class="textarea textarea-bordered w-full mb-4" placeholder="Enter names (comma-separated)"></textarea>
+
+            <button onclick="calculateSplit()" class="btn btn-primary w-full">Split Expense</button>
+        </div>
+
+        <!-- Split Results -->
+        <div id="results" class="hidden bg-base-100 p-6 rounded-xl shadow-md mt-6">
+            <h3 class="text-xl font-semibold mb-4">📊 Split Breakdown</h3>
+            <ul id="split-list" class="space-y-2"></ul>
+        </div>
+    </main>
+
+    <script>
+        // Dark mode functionality
+        const html = document.documentElement;
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        html.setAttribute('data-theme', savedTheme);
+
+        function calculateSplit() {
+            const totalAmount = parseFloat(document.getElementById("total-amount").value);
+            const people = document.getElementById("people-names").value.split(",").map(name => name.trim());
+
+            if (isNaN(totalAmount) || totalAmount <= 0 || people.length === 0) {
+                alert("Please enter a valid amount and at least one name.");
+                return;
+            }
+
+            const splitAmount = (totalAmount / people.length).toFixed(2);
+            const resultsDiv = document.getElementById("results");
+            const splitList = document.getElementById("split-list");
+            splitList.innerHTML = "";
+
+            people.forEach(person => {
+                const li = document.createElement("li");
+                li.innerHTML = `<span class="font-bold">${person}</span> owes ₹${splitAmount}`;
+                splitList.appendChild(li);
+            });
+
+            resultsDiv.classList.remove("hidden");
+        }
+    </script>
+
+</body>
+</html>

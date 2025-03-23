@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Challenges - Finsight</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body class="bg-base-200 min-h-screen flex flex-col">
+
+    <!-- Navbar -->
+    <div class="navbar bg-base-100 shadow-sm">
+        <div class="navbar-start">
+            <a href="index.html" class="btn btn-ghost text-xl">← Back</a>
+        </div>
+        <div class="navbar-center">
+            <h1 class="text-xl font-semibold">💪 Challenges</h1>
+        </div>
+        <div class="navbar-end"></div>
+    </div>
+
+    <!-- Challenges Content -->
+    <main class="p-6">
+        <h2 class="text-2xl font-bold mb-4">🔥 Daily Challenges</h2>
+        
+        <!-- Daily Challenges List -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Challenge 1 -->
+            <div class="bg-base-100 p-4 rounded-xl shadow-md">
+                <h3 class="text-lg font-semibold">💰 No-Spend Day</h3>
+                <p class="text-sm text-gray-500">Avoid spending money today.</p>
+                <progress class="progress progress-success w-full mt-3" value="0" max="100"></progress>
+                <button class="btn btn-primary w-full mt-3" onclick="completeChallenge(this, 1)">Complete (+10 pts)</button>
+            </div>
+
+            <!-- Challenge 2 -->
+            <div class="bg-base-100 p-4 rounded-xl shadow-md">
+                <h3 class="text-lg font-semibold">📊 Track Your Expenses</h3>
+                <p class="text-sm text-gray-500">Log all expenses for the day.</p>
+                <progress class="progress progress-success w-full mt-3" value="0" max="100"></progress>
+                <button class="btn btn-primary w-full mt-3" onclick="completeChallenge(this, 2)">Complete (+15 pts)</button>
+            </div>
+        </div>
+
+        <h2 class="text-2xl font-bold mt-6 mb-4">🏆 Weekly Challenges</h2>
+
+        <!-- Weekly Challenges List -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Challenge 3 -->
+            <div class="bg-base-100 p-4 rounded-xl shadow-md">
+                <h3 class="text-lg font-semibold">💳 Spend Only ₹500 on Dining</h3>
+                <p class="text-sm text-gray-500">Keep your dining expenses under ₹500 this week.</p>
+                <progress class="progress progress-warning w-full mt-3" value="40" max="100"></progress>
+                <button class="btn btn-secondary w-full mt-3" onclick="completeChallenge(this, 3)">Complete (+30 pts)</button>
+            </div>
+
+            <!-- Challenge 4 -->
+            <div class="bg-base-100 p-4 rounded-xl shadow-md">
+                <h3 class="text-lg font-semibold">💵 Save ₹1000</h3>
+                <p class="text-sm text-gray-500">Put aside ₹1000 in savings this week.</p>
+                <progress class="progress progress-warning w-full mt-3" value="60" max="100"></progress>
+                <button class="btn btn-secondary w-full mt-3" onclick="completeChallenge(this, 4)">Complete (+40 pts)</button>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Dark mode functionality
+        const html = document.documentElement;
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        html.setAttribute('data-theme', savedTheme);
+
+        function completeChallenge(button, id) {
+            button.disabled = true;
+            button.textContent = "Completed ✅";
+            button.classList.remove("btn-primary", "btn-secondary");
+            button.classList.add("btn-success");
+        }
+    </script>
+
+</body>
+</html>

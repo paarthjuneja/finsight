@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - Finsight</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body class="bg-base-200 min-h-screen flex flex-col">
+
+    <!-- Navbar -->
+    <div class="navbar bg-base-100 shadow-sm">
+        <div class="navbar-start">
+            <a href="profile.html" class="btn btn-ghost text-xl">← Back</a>
+        </div>
+        <div class="navbar-center">
+            <h1 class="text-xl font-semibold">⚙️ Settings</h1>
+        </div>
+        <div class="navbar-end"></div>
+    </div>
+
+    <!-- Settings Section -->
+    <main class="p-6 flex flex-col items-center">
+        <div class="bg-base-100 p-6 rounded-xl shadow-md w-full max-w-md">
+            
+            <!-- Profile Settings -->
+            <h2 class="text-lg font-semibold mb-4">👤 Profile Settings</h2>
+            <label class="label">Name</label>
+            <input type="text" class="input input-bordered w-full mb-3" placeholder="John Doe" id="name-input">
+            
+            <label class="label">Email</label>
+            <input type="email" class="input input-bordered w-full mb-3" placeholder="johndoe@example.com" id="email-input">
+
+            <button class="btn btn-primary w-full" onclick="saveProfile()">💾 Save Changes</button>
+
+            <hr class="my-6">
+
+            <!-- Theme Settings -->
+            <h2 class="text-lg font-semibold mb-4">🎨 Appearance</h2>
+            <label class="flex items-center gap-3">
+                <input type="checkbox" class="toggle toggle-primary" id="darkModeToggle">
+                <span>Enable Dark Mode</span>
+            </label>
+
+            <hr class="my-6">
+
+            <!-- Notifications -->
+            <h2 class="text-lg font-semibold mb-4">🔔 Notifications</h2>
+            <label class="flex items-center gap-3">
+                <input type="checkbox" class="toggle toggle-success" id="notifyToggle">
+                <span>Receive Monthly Expense Reminders</span>
+            </label>
+
+            <hr class="my-6">
+
+            <!-- Security Settings -->
+            <h2 class="text-lg font-semibold mb-4">🔒 Security</h2>
+            <button class="btn btn-outline btn-warning w-full" onclick="changePassword()">🔑 Change Password</button>
+
+            <button class="btn btn-outline btn-error w-full mt-3" onclick="deleteAccount()">❌ Delete Account</button>
+        </div>
+    </main>
+
+    <script>
+        // Dark mode functionality
+        const html = document.documentElement;
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        
+        // Initialize dark mode from localStorage
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        html.setAttribute('data-theme', savedTheme);
+        darkModeToggle.checked = savedTheme === 'dark';
+
+        // Update dark mode toggle
+        darkModeToggle.addEventListener('change', function() {
+            const newTheme = this.checked ? 'dark' : 'light';
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+        });
+
+        function saveProfile() {
+            alert("Profile changes saved!");
+        }
+
+        function changePassword() {
+            alert("Password reset link sent to your email.");
+        }
+
+        function deleteAccount() {
+            const confirmDelete = confirm("Are you sure you want to delete your account? This action cannot be undone.");
+            if (confirmDelete) {
+                alert("Your account has been deleted.");
+                window.location.href = "index.html"; // Redirect to homepage after deletion
+            }
+        }
+    </script>
+
+</body>
+</html>
